@@ -24,10 +24,97 @@ class ApiModel extends Controller
         curl_close($ch);
     }
 
+    public function createPersonDetails($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params = $input;
+        $res = self::responseObject(self::doAPI($data));
+        return $res[0];
+    }
+
+    public function updatePersonDetails($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params = $input;
+        $res = self::responseObject(self::doAPI($data));
+        return $res[0];
+
+    }
+
+    public function createPersonAddress($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params = $input;
+        $res = self::responseObject(self::doAPI($data));
+        return $res[0];
+    }
+
+    public function updatePersonAddress($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params = $input;
+        $res = self::responseObject(self::doAPI($data));
+        return $res[0];
+    }
+
+    public function createPersonContact($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params = $input;
+        $res = self::responseObject(self::doAPI($data));
+        return $res[0];
+    }
+
+    public function updatePersonContact($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params = $input;
+        $res = self::responseObject(self::doAPI($data));
+        return $res[0];
+    }
+
+    public function getPerson($input)
+    {
+
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params->userId = $input;
+        $res = self::responseObject(self::doAPI($data));
+
+        return $res[0];
+
+    }
+
     public function getHeader($data)
     {
         $signature = base64_encode(hash_hmac('sha256', $data, SIGNATURE, true));
         $header = array('Content-Type:application/json', 'APP-SECURITY-AUTH:'.$signature);
         return $header;
+    }
+
+    public function responseObject($data)
+    {
+        $resObj = json_decode($data);
+        return $resObj;
     }
 }

@@ -76,4 +76,5 @@ class Controller
     {
         return $this->password;
     }
+
 }
